@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Hello World</h1>
+<p>This is {{html_var}} coming through {% if bool_item %}with unique ID: {{num}}{% endif %}</p>
+{{ block.super }}
+{% endblock content %}
