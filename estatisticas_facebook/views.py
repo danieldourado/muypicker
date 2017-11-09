@@ -59,13 +59,16 @@ class PageDetailView(ListView):
     template_name = "estatisticas_facebook/page_detail.html"
     
     def get_context_data(self, **kwargs):
+        
+        eraseModelAndReturnHttpResponse(PageInsights)
+
         context = super(PageDetailView, self).get_context_data( **kwargs)
         pagename = Page.objects.get(pk=self.kwargs['pk'])
   
-        token = 'EAACEdEose0cBACo3GqmOSmAiDGDPPmZCHX6N4CBGfWcEuzyZCMBxv6gwi6uSRtwkbuVaXf5bRh53uidkhIcEvuhgGcscagWP0c9XYCYIyXzdKF3iXgpEtYXc5BeWQkZBcLvED3W6hUzv6ZCL0NBFQNu2dZBuD8JxY5z0Leho7W1OZAV9KQ8EjhUWVHfibNfoARIglhu6ZCw9wZDZD'
+        token = 'EAACEdEose0cBAD6KsQvpVng9vUXf2xzVVTZAX2BwoX3bpRRg9RIfZAg88V3ZBT3P8nrDdiND9TuqN6E4fUhI27WOeATc8ZCRXFttxWt4dFrZCweSJg5Qx0ZCtaRLRa93HDuyZADKDRkb95DqOtbsqXmOMhaoZBbj0qQXgXw7hlZC7I4n37u1m7eKkimGThgWBtNIZD'
         graph = facebook.GraphAPI(token)
 
-        raw_json = graph.get_object(pagename.name+'/insights?period=day&metric=page_fan_adds_unique,page_impressions_unique,page_engaged_users,page_stories,page_storytellers&since=2017-01-01')
+        raw_json = graph.get_object(pagename.name+'/insights?period=day&metric=page_fan_adds_unique,page_impressions_unique,page_engaged_users,page_stories,page_storytellers&since=2017-09-30')
         pagedata = raw_json['data']
 
         for obj in pagedata:
