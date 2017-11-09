@@ -22,7 +22,6 @@ from django.conf.urls import include
 from estatisticas_facebook.views import PageListView, PageView, PageDetailView, eraseAllPageinsights, eraseAllPages, PageInsightsDetailView, PageInsightsListView
 
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', admin.site.urls),
     url(r'^page/insights/erase-all/', eraseAllPageinsights),
     url(r'^page/erase-all/', eraseAllPages),
